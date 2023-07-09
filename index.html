@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+
+		html,
+		body {
+			padding: 0px;
+			margin: 0px;
+		}
+
+		html {
+			padding: 20px 70px;
+			background-color: #0a071a;
+			color: white;
+			font-family: 'Courier Prime', monospace;
+		}
+
+		.header {
+			font-family: 'Major Mono Display', monospace;
+			color: #4ee488;
+			font-size: 70px;
+		}
+
+
+		p {
+			font-size: 25px;
+		}
+
+		.container {
+			display: grid;
+			width: 100%;
+			gap: 40px;
+			grid-template-columns: auto auto;
+			justify-content: center;
+		}
+
+		.pt {
+			font-size: 35px;
+			font-family: 'Major Mono Display', monospace;
+			color: #4ee488;
+		}
+
+		.card {
+			width: 40vw;
+		}
+
+		ul {
+			padding: 0px;
+			margin: 0px;
+			list-style-type: "-";
+			list-style-position: inside;
+		}
+
+		.res {
+			font-size: 25px;
+		}
+
+		.ct {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
+
+		svg {
+			padding-left: 20px;
+		}
+
+		svg:hover {
+			cursor: pointer;
+		}
+
+		a {
+			padding: 0px;
+			margin: 0px;
+			align-items: center;
+			justify-content: center;
+			height: 30px;
+		}
+
+		a:link {
+			text-decoration: none;
+		}
+
+		a:visited {
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+
+		a:active {
+			text-decoration: none;
+		}
+	</style>
+</head>
+
+<body>
+	<h1 class="header">
+		I don't know what to code!
+	</h1>
+	<p>
+		You don't have any ideas for pet projects? Life sucks without coding? You have шило в жопе to create something?
+		Well, then this website is for you.
+	</p>
+	<p>
+		Here a good dude <a href="https://github.com/kon3gor">@kon3gor</a> collects all his dumb ideas for projects.
+		Some of
+		them are even language-agnostic so you basically can use any shitty language you want (but not JavaScript, this
+		shit
+		is not respected here)
+	</p>
+	<div class="container">
+	</div>
+
+	<script>
+		const CARD = `
+		<div class="card">
+			<div class="ct">
+				<h2 class="pt">{{name}}</h2>
+			</div>
+			<p>{{description}}</p>
+			<ul>
+				<span class="res">Resources:</span>
+			</ul>
+		</div>
+		`
+
+		const GH_ICON = `
+				<a href={{mine}} rel="external" target="_blank">
+					<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+						xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 36 36"
+						enable-background="new 0 0 36 36" xml:space="preserve" width="30">
+						<path fill-rule="evenodd" clip-rule="evenodd" fill="#4ee488"
+							d="M18,1.4C9,1.4,1.7,8.7,1.7,17.7c0,7.2,4.7,13.3,11.1,15.5  c0.8,0.1,1.1-0.4,1.1-0.8c0-0.4,0-1.4,0-2.8c-4.5,1-5.5-2.2-5.5-2.2c-0.7-1.9-1.8-2.4-1.8-2.4c-1.5-1,0.1-1,0.1-1  c1.6,0.1,2.5,1.7,2.5,1.7c1.5,2.5,3.8,1.8,4.7,1.4c0.1-1.1,0.6-1.8,1-2.2c-3.6-0.4-7.4-1.8-7.4-8.1c0-1.8,0.6-3.2,1.7-4.4  c-0.2-0.4-0.7-2.1,0.2-4.3c0,0,1.4-0.4,4.5,1.7c1.3-0.4,2.7-0.5,4.1-0.5c1.4,0,2.8,0.2,4.1,0.5c3.1-2.1,4.5-1.7,4.5-1.7  c0.9,2.2,0.3,3.9,0.2,4.3c1,1.1,1.7,2.6,1.7,4.4c0,6.3-3.8,7.6-7.4,8c0.6,0.5,1.1,1.5,1.1,3c0,2.2,0,3.9,0,4.5  c0,0.4,0.3,0.9,1.1,0.8c6.5-2.2,11.1-8.3,11.1-15.5C34.3,8.7,27,1.4,18,1.4z" />
+					</svg>
+				</a>
+		`
+
+		async function loadProjects() {
+			const data = await fetch("https://functions.yandexcloud.net/d4eh9tpuqe25gsqitv0v")
+			const projects = await data.json()
+			let container = document.querySelector(".container")
+			projects.forEach((p, i) => {
+				const basic = CARD.replace("{{name}}", p.name).replace("{{description}}", p.description)
+				container.innerHTML += basic
+
+				let obj = container.querySelectorAll(".card")[i]
+				if (p.mine != "") {
+					const link = GH_ICON.replace("{{mine}}", p.mine)
+					obj.querySelector(".ct").innerHTML += link
+				}
+
+				let list = obj.querySelector("ul")
+				p.res.forEach(r => {
+					console.log(r)
+					let a = document.createElement("a")
+					a.href = r.link
+					a.rel = "external"
+					a.target = "_blank"
+					if (r.title != "") {
+						a.innerHTML = ` ${r.title} `
+					} else {
+						a.innerHTML = ` ${r.link} `
+					}
+					let li = document.createElement("li")
+					li.appendChild(a)
+					list.appendChild(li)
+				})
+			})
+		}
+
+		loadProjects()
+	</script>
+</body>
+
+</html>
