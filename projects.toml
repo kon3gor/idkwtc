@@ -5,3 +5,8 @@ mine = ""
 [[projects.res]]
 title = "Cool article"
 link = "https://tobiasvl.github.io/blog/write-a-chip-8-emulator/"
+
+[[projects]]
+name = "Personal website"
+description = "Everybody need one nowadays"
+mine = ""
