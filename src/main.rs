@@ -1,7 +1,6 @@
 use std::{
     fs::File,
     io::{Read, Write},
-    path::Path,
 };
 
 use serde::{Deserialize, Serialize};
