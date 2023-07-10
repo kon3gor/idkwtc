@@ -1,7 +1,6 @@
 [[projects]]
 name = "Chip8 Emulator"
 description = "This is a very simple processor. Everyone who want to develop emulators starts with such a project."
-mine = ""
 res = [
 	{ title = "Cool article", link =  "https://tobiasvl.github.io/blog/write-a-chip-8-emulator/" }
 ]
@@ -9,17 +8,14 @@ res = [
 [[projects]]
 name = "Personal website"
 description = "Everybody need one nowadays"
-mine = ""
 
 [[projects]]
 name = "CMS engine"
 description = "CMS stands for content managment system. Kinda useful thing in big companies. You will probably learn something new while doing this."
-mine = ""
 
 [[projects]]
 name = "Home multimedia player"
 description = "Have you ever wanted to set up a home cinema? Well, that is quite possible and even easy. The only difficulty is that you need a home server :D"
-mine = ""
 res = [
 	{ title = "Open source multimedia player", link =  "https://jellyfin.org" },
 	{ title = "Not open source analogue", link =  "https://www.plex.tv/" }
