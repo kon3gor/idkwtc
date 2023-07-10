@@ -40,6 +40,7 @@ fn main() {
 
     // Render the template with the given context
     let rendered = tera.render("template.html", &context).unwrap();
+    std::fs::create_dir("dest").unwrap();
     let mut r = File::create("dest/index.html").unwrap();
     r.write_all(rendered.as_bytes()).unwrap();
 }
