@@ -158,21 +158,25 @@
 				}
 
 				let list = obj.querySelector("ul")
-				p.res.forEach(r => {
-					console.log(r)
-					let a = document.createElement("a")
-					a.href = r.link
-					a.rel = "external"
-					a.target = "_blank"
-					if (r.title != "") {
-						a.innerHTML = ` ${r.title} `
-					} else {
-						a.innerHTML = ` ${r.link} `
-					}
-					let li = document.createElement("li")
-					li.appendChild(a)
-					list.appendChild(li)
-				})
+				if (p.res == null) {
+					obj.removeChild(list)
+				} else {
+					p.res.forEach(r => {
+						console.log(r)
+						let a = document.createElement("a")
+						a.href = r.link
+						a.rel = "external"
+						a.target = "_blank"
+						if (r.title != "") {
+							a.innerHTML = ` ${r.title} `
+						} else {
+							a.innerHTML = ` ${r.link} `
+						}
+						let li = document.createElement("li")
+						li.appendChild(a)
+						list.appendChild(li)
+					})
+				}
 			})
 		}
 

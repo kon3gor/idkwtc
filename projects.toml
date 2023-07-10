@@ -10,3 +10,8 @@ link = "https://tobiasvl.github.io/blog/write-a-chip-8-emulator/"
 name = "Personal website"
 description = "Everybody need one nowadays"
 mine = ""
+
+[[projects]]
+name = "CMS engine"
+description = "CMS stands for content managment system. Kinda useful thing in big companies. You will probably learn something new while doing this."
+mine = ""
