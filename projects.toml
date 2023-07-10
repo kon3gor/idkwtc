@@ -20,3 +20,11 @@ res = [
 	{ title = "Open source multimedia player", link =  "https://jellyfin.org" },
 	{ title = "Not open source analogue", link =  "https://www.plex.tv/" }
 ]
+
+[[projects]]
+name = "Text editor"
+description = "This one is quite hard actualy. Working with cursor I consider especially hard. But it's fun. "
+mine = "https://github.com/orokumd"
+res = [
+	{ title = "Full tutorial in C", link =  "https://viewsourcecode.org/snaptoken/kilo/" }
+]
